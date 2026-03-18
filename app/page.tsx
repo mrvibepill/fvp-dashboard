@@ -242,7 +242,7 @@ export default function Home() {
     <main style={{ maxWidth: 420, margin: "0 auto", fontFamily: "sans-serif", paddingBottom: 72, minHeight: "100vh", background: "#F9FAFB" }}>
       <div style={{ background: "#0C447C", color: "#fff", padding: "16px 16px 14px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <div>
-          <div style={{ fontSize: 11, opacity: 0.7, marginBottom: 2 }}>FVP Officials Portal</div>
+          <div style={{ fontSize: 11, opacity: 0.7, marginBottom: 2 }}>PROVO Officials Portal</div>
           <div style={{ fontSize: 16, fontWeight: 500 }}>{page}</div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>

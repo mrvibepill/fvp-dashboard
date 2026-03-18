@@ -29,7 +29,7 @@ export default function LoginPage() {
       <div style={{ width: "100%", maxWidth: 380, padding: "0 24px" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ width: 56, height: 56, background: "#0C447C", borderRadius: 14, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px", fontSize: 24 }}>🏐</div>
-          <h1 style={{ fontSize: 22, fontWeight: 500, margin: "0 0 4px" }}>FVP Officials Portal</h1>
+          <h1 style={{ fontSize: 22, fontWeight: 500, margin: "0 0 4px" }}>PROVO Officials Portal</h1>
           <p style={{ fontSize: 14, color: "#6B7280", margin: 0 }}>Sign in to your referee account</p>
         </div>
 
@@ -72,7 +72,7 @@ export default function LoginPage() {
         </div>
 
         <p style={{ textAlign: "center", fontSize: 12, color: "#9CA3AF", marginTop: 24 }}>
-          Federación de Voleibol de Puerto Rico
+          Professional Volleyball Officials of Puerto Rico 
         </p>
       </div>
     </main>

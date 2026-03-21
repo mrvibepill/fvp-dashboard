@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 
@@ -222,8 +222,20 @@ function ProfilePage() {
 export default function Home() {
   const [page, setPage] = useState("Dashboard");
   const [assignments, setAssignments] = useState(initialMatches);
+  const [userRole, setUserRole] = useState("");
   const router = useRouter();
   const supabase = createClient();
+
+  useEffect(() => {
+    const getProfile = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        const { data } = await supabase.from("profiles").select("role").eq("id", user.id).single();
+        if (data) setUserRole(data.role);
+      }
+    };
+    getProfile();
+  }, []);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -245,11 +257,13 @@ export default function Home() {
           <div style={{ fontSize: 11, opacity: 0.7, marginBottom: 2 }}>PROVO Officials Portal</div>
           <div style={{ fontSize: 16, fontWeight: 500 }}>{page}</div>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <button
-            onClick={handleLogout}
-            style={{ fontSize: 11, color: "rgba(255,255,255,0.7)", background: "none", border: "0.5px solid rgba(255,255,255,0.3)", borderRadius: 6, padding: "4px 10px", cursor: "pointer" }}
-          >
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          {userRole === "admin" && (
+            <button onClick={() => router.push("/admin")} style={{ fontSize: 11, color: "rgba(255,255,255,0.7)", background: "none", border: "0.5px solid rgba(255,255,255,0.3)", borderRadius: 6, padding: "4px 10px", cursor: "pointer" }}>
+              Admin
+            </button>
+          )}
+          <button onClick={handleLogout} style={{ fontSize: 11, color: "rgba(255,255,255,0.7)", background: "none", border: "0.5px solid rgba(255,255,255,0.3)", borderRadius: 6, padding: "4px 10px", cursor: "pointer" }}>
             Sign out
           </button>
           <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#185FA5", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 500 }}>

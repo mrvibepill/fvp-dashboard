@@ -1,10 +1,10 @@
-export const dynamic = "force-dynamic";
-
 "use client";
 
 import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase";
 import { useRouter, useSearchParams } from "next/navigation";
+
+export const dynamic = "force-dynamic";
 
 type Assignment = {
   id: number;

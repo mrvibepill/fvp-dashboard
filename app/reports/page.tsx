@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { createClient } from "@/lib/supabase";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -27,7 +27,7 @@ type Report = {
   match_id: number | null;
 };
 
-export default function ReportsPage() {
+function ReportsContent() {
   const searchParams = useSearchParams();
   const [assignments, setAssignments] = useState<Assignment[]>([]);
   const [reports, setReports] = useState<Report[]>([]);
@@ -237,5 +237,17 @@ export default function ReportsPage() {
         )}
       </div>
     </main>
+  );
+}
+
+export default function ReportsPage() {
+  return (
+    <Suspense fallback={
+      <div style={{ padding: 32, fontFamily: "sans-serif", color: "#6B7280", fontSize: 13 }}>
+        Loading...
+      </div>
+    }>
+      <ReportsContent />
+    </Suspense>
   );
 }
